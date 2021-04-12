@@ -1,0 +1,115 @@
+extends layout
+block content
+  .container-fluid
+    .row
+      include menu
+      main.col-lg-10.col-md-9.col-sm-8.col-12.float-right
+        .col-md-5.col-sm-12.col-12.col-lg-4.bg-dark.float-md-end.float-sm-end.min-vh-100
+          .container.bg-transparent
+            .row
+              h6.text-light.text-center.mt-3 Добавить факультеты
+              form.was-validated(action='/faculty' method="POST")
+                .form-group
+                  label.text-light.mt-4.mb-2(for='name') Название:
+                  input#name.form-control(type='text'  placeholder='Введите название факультета' name='name' required='')
+                  .valid-feedback Успешно
+                  .invalid-feedback введите пожалуйста!
+                .form-group
+                  label.text-light.mt-4.mb-2(for='uname') Декан:
+                  input#uname.form-control(type='text'   placeholder='Введите Декан(Ф.И.О)' name='decan' required='')
+                  .valid-feedback Успешно
+                  .invalid-feedback введите пожалуйста!
+                button.btn.btn-primary.mt-3.float-end(type='submit') добавить
+                button.btn.btn-danger.mt-3.float-start(type='reset') очистить
+            hr.bg-warning.mb-5.mt-5   
+            .row
+              .modals-bg#addkafedra
+                .modals.p-3
+                  .close-btn X
+                  h6.w-100.text-center.mt-3 Добавить кафедра
+                  form.was-validated(action=`/kafedra` method="POST")
+                     .form-group
+                       label.mt-4.mb-2 Название кафедра:
+                       input.form-control(type='text' placeholder='Введите название кафедра ' name='name' required='')
+                       .valid-feedback Успешно
+                       .invalid-feedback введите пожалуйста!
+                     .form-group
+                       label.mt-4.mb-2 Зав кафедры:
+                       input.form-control(type='text' placeholder='Введите Зав кафедры(Ф.И.О)' name='boss' required='')
+                       .valid-feedback Успешно
+                       .invalid-feedback введите пожалуйста!
+                     .form-group
+                        label.mt-2.mb-2 Выберите факультета:
+                        select(name="faculty_id"  style="width:100%;height=50px;padding:10px 5px")
+                          each faculty in facultets
+                            option(value=`${faculty._id}`) #{faculty.name}
+                        .valid-feedback Успешно
+                        .invalid-feedback введите пожалуйста!
+                     .btn-group.float-end(role='group' aria-label='Basic mixed styles example')
+                        button.btn.btn-danger(type='reset') очистить
+                        button.btn.btn-success(type='submit') Отправить
+                         //button.btn.btn-success.mt-3.float-end(type='submit') Отправить
+                         //button.btn.btn-danger.mt-3.float-end(type='reset') 
+              button.kafedrabtn.btn.btn-success(type='button') Добавить кафедра
+              hr.bg-warning.mb-2.mt-2 
+              .row
+              .modals-bg#admins-modal
+                .modals#admin-modal
+                  .close-btn#admin-closer X
+                  h6.w-100.text-center.mt-3 Добавить админ
+                  form.was-validated(action=`/managment/admins/add` method="POST")
+                    .form-group
+                      label.mt-4.mb-2 Логин:
+                      input.form-control(type='text' placeholder='Введите название логин ' name='login' required='')
+                      .valid-feedback Успешно
+                      .invalid-feedback введите пожалуйста!
+                    .form-group
+                      label.mt-4.mb-2 Пароль:
+                      input.form-control(type='password' placeholder='Введите пароль '  name='pswd' required='')
+                      .valid-feedback Успешно
+                      .invalid-feedback введите пожалуйста!
+                    .form-group
+                      label.mt-4.mb-2 подтверждать пароль:
+                      input.form-control(type='password' placeholder='подтверждать пароль ' name='confirm' required='')
+                      .valid-feedback Успешно
+                      .invalid-feedback введите пожалуйста!
+                    .btn-group.float-end(role='group' aria-label='Basic mixed styles example')
+                        button.btn.btn-danger(type='reset') очистить
+                        button.btn.btn-success(type='submit') Отправить
+              button.btn.btn-warning(type='button' id="add-admin-btn" ) Добавить админ
+              hr.bg-warning.mb-2 
+              .row
+              .modals-bg#redaktor-modal
+                .modals#admin-modal
+                  .close-btn#redactor-closer X
+                  h6.w-100.text-center.mt-3 Добавить редактор
+                  form.was-validated(action=`/managment/admins/add/publisher` method="POST")
+                    .form-group
+                      label.mt-4.mb-2 Логин:
+                      input.form-control(type='text' placeholder='Введите название логин ' name='login' required='')
+                      .valid-feedback Успешно
+                      .invalid-feedback введите пожалуйста!
+                    .form-group
+                      label.mt-4.mb-2 Пароль:
+                      input.form-control(type='password' placeholder='Введите пароль ' name='pswd' required='')
+                      .valid-feedback Успешно
+                      .invalid-feedback введите пожалуйста!
+                    .form-group
+                      label.mt-4.mb-2 подтверждать пароль:
+                      input.form-control(type='password' placeholder='подтверждать пароль ' name='confirm' required='')
+                      .valid-feedback Успешно
+                      .invalid-feedback введите пожалуйста!
+                    .form-group
+                        label.mt-2.mb-2 Выберите факультета:
+                        select(name="kafedra_id"  style="width:100%;height=50px;padding:10px 5px")
+                          each data in datas
+                            option(value=`${data._id}`) #{data.name}
+                        .valid-feedback Успешно
+                        .invalid-feedback введите пожалуйста!
+                    .btn-group.float-end(role='group' aria-label='Basic mixed styles example')
+                        button.btn.btn-danger(type='reset') очистить
+                        button.btn.btn-success(type='submit') Отправить
+              button.btn.btn-warning(type='button' id="redactor-btn" ) Добавить редактор
+              hr.bg-warning.mb-2 
+        .col-md-7.col-sm-12.col-12.col-lg-8.float-md-start.float-sm-start.min-vh-100 
+         h1.text-center Hello world 

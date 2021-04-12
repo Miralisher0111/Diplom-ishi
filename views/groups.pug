@@ -1,0 +1,64 @@
+extends layout
+block content
+ .container-fluid
+    .row
+      include menu
+      main.col-lg-10.col-md-9.col-sm-8.col-12.float-right
+       h3.text-center.mt-3.mb-3.bg-dark.text-light Кафедра #{kafedrss.name}
+       .btn.btn-warning.btngroups.col-sm-6.col-md-4.col-lg-2.col-12.mt-3.mb-3.p-2.float-end.mx-sm-2 <i class="fas fa-plus"></i> Добавить группа
+       if istrue==true
+        .modals-bg#editgroup.modals-active
+          .modals
+              .container
+                  .close-btn X
+                  h6.w-100.text-center.mt-3 Изменить группа
+                  form.was-validated(action=`/groups/edit/${parametr}/${result._id}` method="POST")
+                      .form-group
+                          label.mt-4.mb-2 Название группа:
+                          input.form-control(type='text' value=`${result.name}`  placeholder='Введите название кафедра ' name='name' required='')
+                          .valid-feedback Успешно
+                          .invalid-feedback введите пожалуйста!
+                      .form-group
+                          label.mt-4.mb-2 Куратор:
+                          input.form-control(type='text' value=`${result.kurator}` placeholder='Введите Зав кафедры(Ф.И.О)' name='kurator' required='')
+                          .valid-feedback Успешно
+                          .invalid-feedback введите пожалуйста!
+                      .btn-group.float-end(role='group' aria-label='Basic mixed styles example')
+                          button.btn.btn-danger(type='reset') очистить
+                          button.btn.btn-success(type='submit') Отправить
+       table.mt-3.table.table-secondary.table-striped.table-hover.table-bordered.text-center
+            tr
+               th №
+               th Название группа
+               th Куратор
+               th Изменить
+               th Удалить
+            each group , i in groups
+                tr
+                    td=i+1
+                    td
+                      a(href=`/students/${group._id}`)=group.name
+                    td=group.kurator
+                    td
+                        a.btn.btn-transparent.modals-btn(href=`/groups/edit/${group.kafedra_id}/${group._id}`) <i class="far fa-edit"></i>
+                    td
+                        a.btn.btn-transparent(href=`/groups/delete/${group.kafedra_id}/${group._id}`) <i class="far fa-trash-alt"></i> 
+       .modals-bg#addgroup
+                 .modals
+                  .container
+                   .close-btn#addgroupcloser X
+                   h6.w-100.text-center.mt-3 Добавить группа
+                   form.was-validated(action=`/groups/${parametr}` method="POST")
+                     .form-group
+                       label.mt-4.mb-2 Название группа:
+                       input.form-control(type='text'  placeholder='Введите название кафедра ' name='name' required='')
+                       .valid-feedback Успешно
+                       .invalid-feedback введите пожалуйста!
+                     .form-group
+                       label.mt-4.mb-2 Куратор:
+                       input.form-control(type='text' placeholder='Введите Зав кафедры(Ф.И.О)' name='kurator' required='')
+                       .valid-feedback Успешно
+                       .invalid-feedback введите пожалуйста!
+                     .btn-group.float-end(role='group' aria-label='Basic mixed styles example')
+                        button.btn.btn-danger(type='reset') очистить
+                        button.btn.btn-success(type='submit') Отправить

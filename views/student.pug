@@ -1,0 +1,128 @@
+extends layout
+block content
+ .container-fluid
+   .row
+     include menu
+     main.col-lg-10.col-md-9.col-sm-8.col-12.float-right
+      .btn.btn-success.float-end.my-3.mx-4#addstudentbtn Добавить студент
+      h3(style="margin:10px 15px;") 
+        a(class="fas fa-arrow-left" href=`/groups/601bac1cd9e3da1f081a2461` style="text-decoration:none")
+      table.mt-3.table.table-bordered.table-secondary.table-striped.table-hover.text-center.w-100
+            tr
+              th №
+              th студент
+              th тема:
+              th Изменить
+              th Удалить
+            each document,i in students
+             tr
+              td=i+1
+              td(style='max-width:100px; text-align:center')
+                     a(href=`full/${document._id}`) #{document.author}
+              td(style='max-width:200px; text-align:center;line-height:15px;word')
+                     a(href=`../public/uploads/${document.file}`) #{document.name}
+              td
+                    a.btn.btn-transparent(href=`/students/edit/${document._id}`) <i class="far fa-edit"></i>
+              td
+                        a.btn.btn-transparent(href=`/students/delete/${document._id}`) <i class="far fa-trash-alt"></i> 
+      .modals-bg#addstudent
+          .modals.student-modals(style='width:90%')
+              .container 
+                  .close-btn#student-closer X
+                  h5.w-100.text-center.mt-3 Добавить студент
+                  form.was-validated(action=`/students/${parametr}` enctype="multipart/form-data" method="POST")
+                    .box1.d-inline-block
+                      .form-group
+                            label.mt-4.mb-2 Автор:
+                            input.form-control(type='text' value=`` placeholder='Введите Автор (Ф.И.О)' name='author' required='')
+                            .valid-feedback Успешно
+                            .invalid-feedback введите пожалуйста!
+                      .form-group
+                          label.mt-4.mb-2 Название:
+                          input.form-control(type='text' value=`` placeholder='Введите Названия дипломная работа' name='name' required='')
+                          .valid-feedback Успешно
+                          .invalid-feedback введите пожалуйста!
+                      .form-group
+                          label.mt-4.mb-2 Балл:
+                          input.form-control(type='number' value=`` min='55' max='100'  placeholder='Введите балл' name='ball' required='')
+                          .valid-feedback Успешно
+                          .invalid-feedback введите пожалуйста!
+                      .form-group
+                          label.mt-4.mb-2 Дата выдачи:
+                          input.form-control(type='date' value=``  name='getTask' required='')
+                          .valid-feedback Успешно
+                          .invalid-feedback введите пожалуйста!
+                      .form-group
+                          label.mt-4.mb-2 Дата передзащиты:
+                          input.form-control(type='date' value=`` placeholder='Введите Зав кафедры(Ф.И.О)' name='practice' required='')
+                          .valid-feedback Успешно
+                          .invalid-feedback введите пожалуйста!
+                      .form-group
+                          label.mt-4.mb-2 Дата защита:
+                          input.form-control(type='date' value=``  name='protection' required='')
+                          .valid-feedback Успешно
+                          .invalid-feedback введите пожалуйста!
+                      .form-group
+                          label.mt-4.mb-2 Год выпуска:
+                          input.form-control(type='number' min='2020' max='2300'  placeholder='Введите год выпуска ' name='yearFinished' required='')
+                          .valid-feedback Успешно
+                          .invalid-feedback введите пожалуйста!
+                      .form-group
+                          label.mt-4.mb-2 Количество приложений:
+                          input.form-control(type='number' min='0' max='10'   placeholder='Введите количество приложений  ' name='countApplication' required='')
+                          .valid-feedback Успешно
+                          .invalid-feedback введите пожалуйста!
+                      .form-group
+                          label.mt-4.mb-2 Количество страниц:
+                          input.form-control(type='number' min='0' max='500' value=``  placeholder='Введите количество страница ' name='countPage' required='')
+                          .valid-feedback Успешно
+                          .invalid-feedback введите пожалуйста!
+                    .box1.d-inline-block
+                      .form-group
+                          label.mt-4.mb-2 Количество изображений:
+                          input.form-control(type='number' min='0' max='500' value=`` placeholder='Введите количество изображений' name='countPicture' required='')
+                          .valid-feedback Успешно
+                          .invalid-feedback введите пожалуйста!
+                      .form-group
+                          label.mt-4.mb-2 Количество Таблитц:
+                          input.form-control(type='number' min='0' max='1000' value=`` placeholder='Введите количество таблитц' name='countTable' required='')
+                          .valid-feedback Успешно
+                          .invalid-feedback введите пожалуйста!
+                      .form-group
+                          label.mt-4.mb-2 Количество источников:
+                          input.form-control(type='number' min='0' max='500' value=`` placeholder='Введите количество источников' name='countSource' required='')
+                          .valid-feedback Успешно
+                          .invalid-feedback введите пожалуйста!
+                      .form-group
+                          label.mt-4.mb-2 Руководитель:
+                          input.form-control(type='text' value=`` placeholder='Введите руководитель(Ф.И.О)' name='teacher' required='')
+                          .valid-feedback Успешно
+                          .invalid-feedback введите пожалуйста!
+                      .form-group
+                          label.mt-4.mb-2 Консультант:
+                          input.form-control(type='text' value=`` placeholder='Введите консультант(Ф.И.О)' name='consultant' required='')
+                          .valid-feedback Успешно
+                          .invalid-feedback введите пожалуйста!
+                      .form-group
+                          label.mt-4.mb-2 Рецензентов:
+                          input.form-control(type='text' value=`` placeholder='Введите рецензент(Ф.И.О)' name='retsenzent' required='')
+                          .valid-feedback Успешно
+                          .invalid-feedback введите пожалуйста!
+                      .form-group
+                          label.mt-4.mb-2 Консультант по технологии:
+                          input.form-control(type='text' value=`` placeholder='Введите консультант по технологии(Ф.И.О)' name='texConsultant' required='')
+                          .valid-feedback Успешно
+                          .invalid-feedback введите пожалуйста!
+                      .form-group
+                          label.mt-4.mb-2 Консультант по БЖД:
+                          input.form-control(type='text' value=``  placeholder='Введите консультант по БЖД(Ф.И.О)' name='consultantBjd' required='')
+                          .valid-feedback Успешно
+                          .invalid-feedback введите пожалуйста!
+                      .form-group
+                          label.mt-4.mb-2 Место для загрузить файл:
+                          input.form-control(type='file' value=`` accept='.pdf,.doc,.docx,.ppt,.pptx'  placeholder='Выберите файл'  name='file'  required='' )
+                          .valid-feedback Успешно
+                          .invalid-feedback введите пожалуйста!
+                      .btn-group.float-end.mt-3.mb-3(role='group' aria-label='Basic mixed styles example')
+                          button.btn.btn-danger(type='reset') очистить
+                          button.btn.btn-success(type='submit') Отправить

@@ -1,0 +1,52 @@
+extends layout
+block content
+ .container-fluid 
+    .row
+        include menu
+        main.col-lg-10.col-md-9.col-sm-8.col-12.float-right
+            .col-md-7.col-8.offset-3
+              .input-group.mt-3
+                input.form-control(type='text' placeholder="Поиск" )
+                button#button-addon2.btn.btn-outline-secondary.bg-primary.text-light(type='button') Поиск
+            table.mt-3.table.table-secondary.table-striped.table-hover.text-center
+             tr
+              th №
+              th Название
+              th Декан
+              th Изменить
+              th Удалить
+             each faculty, i in facultets
+              tr
+               td=i+1
+               td=faculty.name
+               td=faculty.decan
+               td
+                a.btn.btn-transparent.modals-btn(href=`/faculty/edit/${faculty.id}`) <i class="far fa-edit"></i>
+               td
+                a.btn.btn-transparent(href=`/faculty/delete/${faculty.id}`) <i class="far fa-trash-alt"></i>
+            if isTrue==true
+                .modals-bg.modals-active
+                 .modals
+                  .container
+                   .close-btn X
+                   h6.w-100.text-center.mt-3 Изменить факультеты
+                   form.was-validated(action=`/faculty/edit/${parametr}` method="POST")
+    
+                     .form-group
+                       label.mt-4.mb-2(for='name') Название:
+                       input.form-control(type='text' value=`${facultybyid.name}` placeholder='Введите название факультета ' name='name' required='')
+                       .valid-feedback Успешно
+                       .invalid-feedback введите пожалуйста!
+                     .form-group
+                       label.mt-4.mb-2 Декан:
+                       input.form-control(type='text' value=`${facultybyid.decan}` placeholder='Введите Декан(Ф.И.О)' name='decan' required='')
+                       .valid-feedback Успешно
+                       .invalid-feedback введите пожалуйста!
+                     .box-button
+                         button.btn.btn-success.mt-3.float-end(type='submit') Отправить
+                         button.btn.btn-danger.mt-3.float-end(type='reset') очистить
+           
+                      
+                
+            
+        

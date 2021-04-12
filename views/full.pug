@@ -1,0 +1,68 @@
+extends layout
+block content
+ .container-fluid
+   .row
+     include menu
+     main.col-lg-10.col-md-9.col-sm-8.col-12.full-flex
+      .full-card
+        h1 
+          i(class="fas fa-user-graduate")
+        .container.cont
+              h3 
+                a(class="fas fa-arrow-left" href=`/students/${data.group_id}` style="text-decoration:none")
+              table.table.table-bordered.table-striped.table-hover.mx-auto(style="max-width:800px;vertical-align:middle")
+                  tr
+                    th.text-center.h3(colspan='2') #{data.author}
+                  tr
+                    th Названия тема:
+                    td(style="max-width:100px") #{data.name}
+                  tr 
+                    th Балл:
+                    td #{data.ball}
+                  tr 
+                    th Дата выдачи:
+                    td 
+                       i(class="far fa-calendar-alt") &nbsp;&nbsp; #{data.getTask.toLocaleDateString()}
+                  tr 
+                    th Дата передзащиты:
+                    td
+                       i(class="far fa-calendar-alt") &nbsp;&nbsp; #{data.practice.toLocaleDateString()}
+                  tr 
+                    th Дата защита:
+                    td 
+                      i(class="far fa-calendar-alt") &nbsp;&nbsp; #{data.protection.toLocaleDateString()}
+                  tr 
+                    th Год выпуска:
+                    td #{data.yearFinished}
+                  tr
+                    th Количество приложений:
+                    td #{data.countApplication}
+                  tr 
+                    th Количество страниц:
+                    td #{data.countPage}
+                  tr 
+                    th Количество изображений:
+                    td #{data.countPicture}
+                  tr 
+                    th Количество Таблитц:
+                    td #{data.countTable}
+                  tr 
+                    th Количество источников:
+                    td #{data.countSource}
+                  tr 
+                    th Руководитель:
+                    td #{data.teacher}
+                  tr 
+                    th Консультант:
+                    td #{data.consultant}
+                  tr 
+                    th рецензент:
+                    td #{data.retsenzent}
+                  tr 
+                    th Консультант по технологии:
+                    td #{data.texConsultant}
+                  tr 
+                    th Консультант по БЖД:
+                    td #{data.consultantBjd}
+              
+              

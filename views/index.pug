@@ -1,0 +1,29 @@
+extends layout
+block content
+ .container-fluid
+    .row
+      include menu
+      main.col-lg-10.col-md-9.col-sm-8.col-12.float-right
+        .box-card
+          ul.cards
+            li.card-item
+             h2 <i class="fas fa-university"></i> Факультеты
+             p=countfaculty
+            li.card-item
+             h2 <i class="fas fa-door-open"></i> Кафедры
+             p #{countkafedra}
+            li.card-item
+             h2 <i class="fas fa-users"></i> Группы
+             p #{countgroup}
+            li.card-item
+             h2 <i class="fas fa-user-graduate"></i> Студенты
+             p 170
+            li.card-item
+             h2 <i class="fas fa-user-shield"></i> Редактори
+             p 200
+            li.card-item
+             h2 <i class="fas fa-user-cog"></i> Админы
+             p 400
+            
+      
+

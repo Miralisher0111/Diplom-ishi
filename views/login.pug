@@ -1,0 +1,21 @@
+extends layout
+block content
+  .container.text-light.mt-5
+   .row.mt-5
+     .col-md-6.offset-md-3.mt-5.bg-dark.pt-1.box-login
+        .col-md-6.m-auto.mt-1
+          h4.text-center добро пожаловать !
+        form.was-validated(action='/admins/login' method="POST" )
+          .form-group
+              label(for='login') логин:
+              input#login.form-control.mt-2.mb-1(type='text' name="login" placeholder="Введите Логин" required='')
+              .valid-feedback успешно
+              .invalid-feedback введите
+          .form-group
+              label(for='pwd') пароль:
+              input#pwd.form-control.mt-2.mb-1(type='password' name="parol" placeholder="Введите Пароль" required='')
+              .valid-feedback успешно
+              .invalid-feedback введите
+          button.btn.btn-success.f-right(type='submit' ) Submit
+    
+              

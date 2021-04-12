@@ -1,0 +1,54 @@
+extends layout
+block content
+ .container-fluid
+    .row
+      include menu
+      main.col-lg-10.col-md-9.col-sm-8.col-12.float-end 
+        if istrue==true
+                .modals-bg.modals-active
+                 .modals
+                  .container
+                   .close-btn X
+                   h6.w-100.text-center.mt-3 Изменить кафедра
+                   form.was-validated(action=`/kafedra/edit/${parametr}` method="POST")
+                     .form-group
+                       label.mt-4.mb-2 Название кафедра:
+                       input.form-control(type='text' value=`${Cafedra.name}` placeholder='Введите название кафедра ' name='name' required='')
+                       .valid-feedback Успешно
+                       .invalid-feedback введите пожалуйста!
+                     .form-group
+                       label.mt-4.mb-2 Зав кафедры:
+                       input.form-control(type='text' value=`${Cafedra.boss}` placeholder='Введите Зав кафедры(Ф.И.О)' name='boss' required='')
+                       .valid-feedback Успешно
+                       .invalid-feedback введите пожалуйста!
+                     .form-group
+                        label.mt-2.mb-2 Выберите факультета:
+                        select(name="faculty_id"  style="width:100%;height=50px")
+                          option(value=`${data._id}` selected) #{data.name}
+                          each faculty in results
+                              option(value=`${faculty._id}`) #{faculty.name}
+                        .valid-feedback Успешно
+                        .invalid-feedback введите пожалуйста!
+                     .btn-group.float-end(role='group' aria-label='Basic mixed styles example')
+                        button.btn.btn-danger(type='reset') очистить
+                        button.btn.btn-success(type='submit') Отправить
+        each kafedra in results
+          h3.text-center.bg-dark.text-light.pt-2.pb-2 Факультет:#{kafedra.name} 
+          table.mt-3.table.table-secondary.table-striped.table-hover.text-center.w-100
+            tr
+              th №
+              th Название
+              th Зав кафедры:
+              th Изменить
+              th Удалить
+            each kaf ,i in kafedra.kafedra
+              tr
+                td=i+1
+                td
+                  a#kafedraname(href=`/groups/${kaf._id}`)=kaf.name
+                td=kaf.boss
+                td 
+                  a.btn.btn-transparent.modals-btn(href=`/kafedra/edit/${kaf._id}`) <i class="far fa-edit"></i>
+                td
+                  a.btn.btn-transparent(href=`/kafedra/delete/${kaf._id}`) <i class="far fa-trash-alt"></i>
+          
