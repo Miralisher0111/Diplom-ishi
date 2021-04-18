@@ -3,8 +3,8 @@ block content
   .container-fluid
     .row
       include menu
-      main.col-lg-10.col-md-9.col-sm-8.col-12.float-right
-        .col-md-5.col-sm-12.col-12.col-lg-4.bg-dark.float-md-end.float-sm-end.min-vh-100
+      main.col-lg-10.col-md-9.col-sm-8.col-12.float-right.bg-dark
+        .col-md-4.col-sm-12.col-12.col-lg-3.bg-transparent.float-md-end.float-sm-end.min-vh-100
           .container.bg-transparent
             .row
               h6.text-light.text-center.mt-3 Добавить факультеты
@@ -111,5 +111,38 @@ block content
                         button.btn.btn-success(type='submit') Отправить
               button.btn.btn-warning(type='button' id="redactor-btn" ) Добавить редактор
               hr.bg-warning.mb-2 
-        .col-md-7.col-sm-12.col-12.col-lg-8.float-md-start.float-sm-start.min-vh-100 
-         h1.text-center Hello world 
+        .col-md-8.col-sm-12.col-12.col-lg-9.float-md-start.float-sm-start.min-vh-100
+         h1.text-center.bg-dark.text-light.py-2.mb-0 Администраторы
+         table.table.table-secondary.table-striped.table-hover.text-center.w-80.mb-0
+          tr
+            th №
+            th Логин
+            th ответственность
+            th Изменить
+            th Удалить
+          each admin,i in admins
+            tr
+              td=i+1
+              td #{admin.username}
+              td #{admin.role}
+              td 
+                a.btn.btn-transparent.modals-btn(href=`#`) <i class="far fa-edit"></i>
+              td
+                a.btn.btn-transparent(href=`#`) <i class="far fa-trash-alt"></i>
+         h1.text-center.bg-dark.text-light.py-2.mb-0 Редакторы
+         table.table.table-secondary.table-striped.table-hover.text-center.w-100.mb-0
+          tr
+            th №
+            th Логин
+            th ответственность
+            th Изменить
+            th Удалить
+          each publisher,i in publishers
+            tr
+              td=i+1
+              td #{publisher.username}
+              td #{publisher.role}
+              td() 
+                a.btn.btn-transparent.modals-btn(href=`#`) <i class="far fa-edit"></i>
+              td
+                a.btn.btn-transparent(href=`#`) <i class="far fa-trash-alt"></i> 

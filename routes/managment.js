@@ -44,7 +44,27 @@ router.get('/managment/admins/add',(req,res,next)=>{
                     console.error('/managmen/admins/add da xatolik',err);
                 }
                 else{
-                    res.render('managment', { title:"Admins",facultets,datas})
+                    Admin.find({role:'admin'},(err,admins)=>{
+                        if(err){
+                            console.log(err);
+                        }
+                        else{
+                            Admin.aggregate([{
+                                $match:{
+                                    role:'publisher'
+                                }
+                            }],(err,publishers)=>{
+                                if(err){
+                                    console.log(err);
+                                }
+                                else{
+                                    res.render('managment', { title:"Admins",facultets,datas,admins,publishers})
+                                }
+                            })
+                        }
+                        
+                    })
+                   
                 }
             }).sort({"name":1})
             
