@@ -3,8 +3,8 @@ block content
   .container-fluid
     .row
       include menu
-      main.col-lg-10.col-md-9.col-sm-8.col-12.float-right.bg-dark
-        .col-md-4.col-sm-12.col-12.col-lg-3.bg-transparent.float-md-end.float-sm-end.min-vh-100
+      main.col-lg-10.col-md-9.col-sm-8.col-12.float-right.bg-light
+        .col-md-4.col-sm-12.col-12.col-lg-3.bg-dark.float-md-end.float-sm-end.min-vh-100
           .container.bg-transparent
             .row
               h6.text-light.text-center.mt-3 Добавить факультеты
@@ -128,7 +128,7 @@ block content
               td 
                 a.btn.btn-transparent.modals-btn(href=`#`) <i class="far fa-edit"></i>
               td
-                a.btn.btn-transparent(href=`#`) <i class="far fa-trash-alt"></i>
+                a.btn.btn-transparent(href=`/managment/admins/delete/${admin._id}`) <i class="far fa-trash-alt"></i>
          h1.text-center.bg-dark.text-light.py-2.mb-0 Редакторы
          table.table.table-secondary.table-striped.table-hover.text-center.w-100.mb-0
           tr
@@ -140,9 +140,10 @@ block content
           each publisher,i in publishers
             tr
               td=i+1
-              td #{publisher.username}
+              td 
+                a(href=`/groups/${publisher.kafedra_id}`)  #{publisher.username}
               td #{publisher.role}
-              td() 
+              td 
                 a.btn.btn-transparent.modals-btn(href=`#`) <i class="far fa-edit"></i>
               td
-                a.btn.btn-transparent(href=`#`) <i class="far fa-trash-alt"></i> 
+                a.btn.btn-transparent(href=`/managment/admins/delete/${publisher._id}`) <i class="far fa-trash-alt"></i> 

@@ -73,6 +73,20 @@ router.get('/managment/admins/add',(req,res,next)=>{
 
     
 })
+
+router.get('/managment/admins/delete/:id',(req,res,next)=>{
+   Admin.findByIdAndDelete(req.params.id,(err,data)=>{
+       if(err){
+           req.flash('danger','tizimda xatolik yuz berdi')
+           res.redirect('back')
+       }
+       if(data){
+        req.flash('success',`${data.username} bazadan o'chirildi`)
+        res.redirect('back')
+       }
+   })  
+})
+
 router.post('/managment/admins/add',(req,res,next)=>{
     const{login,pswd,confirm}=req.body
     req.checkBody('login',"Surname maydonchasi to'ldirilmagan").notEmpty();
