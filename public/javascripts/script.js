@@ -94,6 +94,11 @@ showkafedra();
    })
  }
  showredactor();
+
+// publisher
+
+
+
 // Disable form submissions if there are invalid fields
 (function() {
   'use strict';

@@ -19,7 +19,7 @@ block content
               td=i+1
               td(style='max-width:100px; text-align:center')
                      a(href=`full/${document._id}`) #{document.author}
-              td(style='max-width:200px; text-align:center;line-height:15px;word')
+              td(style='max-width:200px; text-align:center;line-height:15px;')
                      a(href=`../public/uploads/${document.file}`) #{document.name}
               td
                     a.btn.btn-transparent(href=`/students/edit/${document._id}`) <i class="far fa-edit"></i>

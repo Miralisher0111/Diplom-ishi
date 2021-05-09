@@ -186,4 +186,7 @@ router.post('/managment/admins/add/publisher',(req,res,next)=>{
  
 })
 
+router.get('/managment/admins/edit/publisher',(req,res,next)=>{
+    
+})
 module.exports=router
