@@ -7,6 +7,7 @@ const flash=require('connect-flash')
 const validator=require('express-validator');
 const session=require('express-session');
 const messages=require('express-messages');
+const passport=require('passport')
 
 
 const facultyRouter = require('./routes/faculty');
@@ -61,6 +62,24 @@ app.use(validator({
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
+
+
+
+// passportjs ni ulaymiz
+
+require('./config/passport')(passport);
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+app.get("*",(req,res,next)=>{
+  res.locals.user=req.user ||null;
+  next();
+});
+
+
+
+
 
 app.use(logger('dev'));
 app.use(express.json());

@@ -4,9 +4,10 @@ const router=express.Router();
 const Faculty=require('../model/Faculty')
 const Kafedra=require('../model/Kafedra')
 const Groups=require('../model/Group');
-const Admin=require('../model/Admin')
+const Admin=require('../model/Admin');
+const eA=require('../middleware/middleware');
 
-router.get('/',(req,res,next)=>{
+router.get('/',eA,(req,res,next)=>{
     const promise=Faculty.find({});
     promise.catch(err=>console.log(err))
     .then((data)=>{
@@ -115,7 +116,7 @@ router.post('/managment/admins/add',(req,res,next)=>{
                 else{
                     new Admin({
                         username:login,
-                        pasword:hash,
+                        password:hash,
                         role:'admin',
                         kafedra_id:'admin'
                     }).save()
