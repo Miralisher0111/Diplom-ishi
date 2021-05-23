@@ -13,4 +13,9 @@ const router=express.Router();
     failureRedirect: '/admins/login',
     failureFlash: true })(req,res,next);
  })
+router.get('/admins/logout',(req,res,next)=>{
+   req.logout();
+    req.flash('success',"Siz tizimdan muvofaqqiyatli chiqdingiz");
+    res.redirect('/admins/login');
+})
 module.exports=router

@@ -34,7 +34,7 @@ router.get('/',eA,(req,res,next)=>{
 })
 
 
-router.get('/managment/admins/add',(req,res,next)=>{
+router.get('/managment/admins/add',eA,(req,res,next)=>{
     Faculty.find({},(err,facultets)=>{
         if(err){
             console.error("/managment/admins/add da xatolik ",err)
@@ -75,7 +75,7 @@ router.get('/managment/admins/add',(req,res,next)=>{
     
 })
 
-router.get('/managment/admins/delete/:id',(req,res,next)=>{
+router.get('/managment/admins/delete/:id',eA,(req,res,next)=>{
    Admin.findByIdAndDelete(req.params.id,(err,data)=>{
        if(err){
            req.flash('danger','tizimda xatolik yuz berdi')
@@ -88,7 +88,7 @@ router.get('/managment/admins/delete/:id',(req,res,next)=>{
    })  
 })
 
-router.post('/managment/admins/add',(req,res,next)=>{
+router.post('/managment/admins/add',eA,(req,res,next)=>{
     const{login,pswd,confirm}=req.body
     req.checkBody('login',"Surname maydonchasi to'ldirilmagan").notEmpty();
     req.checkBody('pswd',"Surname maydonchasi to'ldirilmagan").notEmpty();
@@ -136,7 +136,7 @@ router.post('/managment/admins/add',(req,res,next)=>{
     }
 })
   
-router.post('/managment/admins/add/publisher',(req,res,next)=>{
+router.post('/managment/admins/add/publisher',eA,(req,res,next)=>{
   const{login,pswd,confirm,kafedra_id}=req.body;
   req.checkBody('login',"Surname maydonchasi to'ldirilmagan").notEmpty();
   req.checkBody('pswd',"Surname maydonchasi to'ldirilmagan").notEmpty();
@@ -165,7 +165,7 @@ router.post('/managment/admins/add/publisher',(req,res,next)=>{
                       else{
                         new Admin({
                             username:login,
-                            pasword:hash,
+                            password:hash,
                             role:'publisher',
                             kafedra_id:kafedra_id
                         }).save()
@@ -187,7 +187,7 @@ router.post('/managment/admins/add/publisher',(req,res,next)=>{
  
 })
 
-router.get('/managment/admins/edit/publisher',(req,res,next)=>{
+router.get('/managment/admins/edit/publisher',eA,(req,res,next)=>{
     
 })
 module.exports=router

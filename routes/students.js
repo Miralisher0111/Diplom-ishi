@@ -4,6 +4,7 @@ const path=require('path');
 const fs=require('fs');
 const router=express.Router();
 const StudentWork=require('../model/StudentWork');
+const eA=require('../middleware/middleware')
 
 
 const storage=multer.diskStorage({
@@ -32,7 +33,7 @@ const upload=multer({
 
 
 
-router.get(`/students/:id`,(req,res,next)=>{
+router.get(`/students/:id`,eA,(req,res,next)=>{
    var parametr=req.params.id;
    StudentWork.find({'group_id':`${parametr}`},(err,students)=>{
       if(err){
@@ -46,7 +47,7 @@ router.get(`/students/:id`,(req,res,next)=>{
          
       
 })
-router.post(`/students/:id`,upload,(req,res,next)=>{
+router.post(`/students/:id`,eA,upload,(req,res,next)=>{
    const id=req.params.id
    const file=req.file
    if(file.size>=2*1024*1024){
@@ -114,7 +115,7 @@ router.get('/back',(req,res,next)=>{
       res.redirect('back')
    
 })
-router.get('/students',(req,res,next)=>{
+router.get('/students',eA,(req,res,next)=>{
    res.send('hello world')
 })
 router.get('/students/full/:id',(req,res,next)=>{
@@ -128,7 +129,7 @@ router.get('/students/full/:id',(req,res,next)=>{
    })
 })
 
-router.get('/students/edit/:id',async(req,res,next)=>{
+router.get('/students/edit/:id',eA,async(req,res,next)=>{
    await StudentWork.findById(req.params.id,(err,data)=>{
       if(err){
          console.log(err);

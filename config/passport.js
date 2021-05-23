@@ -13,7 +13,7 @@ module.exports=(passport)=>{
           return done(null, false, { message: 'Bazada bunday foydalanuvchi yo\'q.' });
         }
         else{
-          bcrypt.compare(password,user.pasword,(err,result)=>{
+          bcrypt.compare(password,user.password,(err,result)=>{
             if(err){
               throw err
             }
