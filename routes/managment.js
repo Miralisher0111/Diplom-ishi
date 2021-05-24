@@ -6,6 +6,7 @@ const Kafedra=require('../model/Kafedra')
 const Groups=require('../model/Group');
 const Admin=require('../model/Admin');
 const eA=require('../middleware/middleware');
+const admineA=require('../middleware/admin-midleware')
 
 router.get('/',eA,(req,res,next)=>{
     const promise=Faculty.find({});
@@ -34,7 +35,7 @@ router.get('/',eA,(req,res,next)=>{
 })
 
 
-router.get('/managment/admins/add',eA,(req,res,next)=>{
+router.get('/managment/admins/add',eA,admineA,(req,res,next)=>{
     Faculty.find({},(err,facultets)=>{
         if(err){
             console.error("/managment/admins/add da xatolik ",err)

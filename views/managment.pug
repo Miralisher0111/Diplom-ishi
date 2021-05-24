@@ -112,7 +112,7 @@ block content
               button.btn.btn-warning(type='button' id="redactor-btn" ) Добавить редактор
               hr.bg-warning.mb-2 
         .col-md-8.col-sm-12.col-12.col-lg-9.float-md-start.float-sm-start.min-vh-100
-         h1.text-center.bg-dark.text-light.py-2.mb-0 Администраторы
+         h3.text-center.bg-dark.text-light.py-2.mb-0 Администраторы
          .modals-bg
            .modals
             .container
@@ -140,13 +140,14 @@ block content
             th ответственность
             th Удалить
           each admin,i in admins
-            tr
-              td=i+1
-              td #{admin.username}
-              td #{admin.role}
-              td
-                a.btn.btn-transparent(href=`/managment/admins/delete/${admin._id}`) <i class="far fa-trash-alt"></i>
-         h1.text-center.bg-dark.text-light.py-2.mb-0 Редакторы
+            if admin.username!='system'
+              tr
+                td=i+1
+                td #{admin.username}
+                td #{admin.role}
+                td
+                  a.btn.btn-transparent(href=`/managment/admins/delete/${admin._id}`) <i class="far fa-trash-alt"></i>
+         h3.text-center.bg-dark.text-light.py-2.mb-0 Редакторы
          table.table.table-secondary.table-striped.table-hover.text-center.w-100.mb-0
           tr
             th №

@@ -1,13 +1,21 @@
 aside.col-lg-2.col-md-3.col-sm-4.col-12
     .header
         img(src="/images/admin.png", alt="Admin")
-        p добро пожаловать,Mirxomidov 
+        if user
+            p добро пожаловать,
+                h6(style='margin-bottom:0;padding:0') 
+                    b #{user.username}
     hr
     #list-example.list-group
         a.list-group-item.list-group-item-action.text-center.bg-transparent(href='/') Главная
-        a.list-group-item.list-group-item-action.text-center.bg-transparent(href='/faculty') Факультеты
-        a.list-group-item.list-group-item-action.text-center.bg-transparent(href='/kafedra') Кафедры
-        a.list-group-item.list-group-item-action.text-center.bg-transparent(href='#list-item-3') Группы
+        if user.role=='admin'
+            a.list-group-item.list-group-item-action.text-center.bg-transparent(href='/faculty') Факультеты
+            a.list-group-item.list-group-item-action.text-center.bg-transparent(href='/kafedra') Кафедры
+            a.list-group-item.list-group-item-action.text-center.bg-transparent(href='#list-item-3') Группы
+        if user.role=='publisher'
+            a.list-group-item.list-group-item-action.text-center.bg-transparent(href=`/groups/${user.kafedra_id}`) Группы
         a.list-group-item.list-group-item-action.text-center.bg-transparent(href='#list-item-4') Студенты
-        a.list-group-item.list-group-item-action.text-center.bg-transparent(href='/managment/admins/add') Администрация
-        a.list-group-item.list-group-item-action.text-center.bg-transparent(href='/admins/logout') <i class="fas fa-sign-out-alt"></i> Выход
+        if user.role=='admin'
+            a.list-group-item.list-group-item-action.text-center.bg-transparent(href='/managment/admins/add') Администрация
+        a.list-group-item.list-group-item-action.text-center.bg-transparent(href='/admins/logout')
+            b <i class="fas fa-sign-out-alt"></i> Выход

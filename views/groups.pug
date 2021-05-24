@@ -15,12 +15,12 @@ block content
                   form.was-validated(action=`/groups/edit/${parametr}/${result._id}` method="POST")
                       .form-group
                           label.mt-4.mb-2 Название группа:
-                          input.form-control(type='text' value=`${result.name}`  placeholder='Введите название кафедра ' name='name' required='')
+                          input.form-control(type='text' value=`${result.name}`  placeholder='Введите название группа ' name='name' required='')
                           .valid-feedback Успешно
                           .invalid-feedback введите пожалуйста!
                       .form-group
                           label.mt-4.mb-2 Куратор:
-                          input.form-control(type='text' value=`${result.kurator}` placeholder='Введите Зав кафедры(Ф.И.О)' name='kurator' required='')
+                          input.form-control(type='text' value=`${result.kurator}` placeholder='Введите куратор (Ф.И.О)' name='kurator' required='')
                           .valid-feedback Успешно
                           .invalid-feedback введите пожалуйста!
                       .btn-group.float-end(role='group' aria-label='Basic mixed styles example')
@@ -51,12 +51,12 @@ block content
                    form.was-validated(action=`/groups/${parametr}` method="POST")
                      .form-group
                        label.mt-4.mb-2 Название группа:
-                       input.form-control(type='text'  placeholder='Введите название кафедра ' name='name' required='')
+                       input.form-control(type='text'  placeholder='Введите название группа ' name='name' required='')
                        .valid-feedback Успешно
                        .invalid-feedback введите пожалуйста!
                      .form-group
                        label.mt-4.mb-2 Куратор:
-                       input.form-control(type='text' placeholder='Введите Зав кафедры(Ф.И.О)' name='kurator' required='')
+                       input.form-control(type='text' placeholder='Введите куратор (Ф.И.О)' name='kurator' required='')
                        .valid-feedback Успешно
                        .invalid-feedback введите пожалуйста!
                      .btn-group.float-end(role='group' aria-label='Basic mixed styles example')

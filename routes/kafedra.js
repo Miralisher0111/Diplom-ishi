@@ -1,8 +1,9 @@
 const express=require('express');
 const Kafedra=require('../model/Kafedra')
 const Faculty=require('../model/Faculty');
+const md=require('../middleware/middleware')
 const router=express.Router();
-router.get('/kafedra', async(req,res,next)=>{
+router.get('/kafedra',md, async(req,res,next)=>{
     await Faculty.aggregate([{
         $lookup:
         {

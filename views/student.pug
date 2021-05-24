@@ -5,8 +5,9 @@ block content
      include menu
      main.col-lg-10.col-md-9.col-sm-8.col-12.float-right
       .btn.btn-success.float-end.my-3.mx-4#addstudentbtn Добавить студент
-      h3(style="margin:10px 15px;") 
-        a(class="fas fa-arrow-left" href=`/groups/601bac1cd9e3da1f081a2461` style="text-decoration:none")
+      if user.role=='publisher'
+        h3(style="margin:10px 15px;") 
+         a(class="fas fa-arrow-left" href=`/groups/${user.kafedra_id}` style="text-decoration:none")
       table.mt-3.table.table-bordered.table-secondary.table-striped.table-hover.text-center.w-100
             tr
               th №
